@@ -6,12 +6,15 @@ import openai
 from openai import OpenAI
 import os 
 import json 
-open_ai_key  = "sk-proj-z8pRgOjNVVqsdVlA1fhVT3BlbkFJFJ1CHApNkYuCbiLdpg7n"
-# Load GPT-3.5 model
-# model = OpenAI()  # Adjust parameters as needed
+from dotenv import load_dotenv, dotenv_values, find_dotenv
 
-os.environ['OPENAI_API_KEY'] = open_ai_key
-openai.api_key = open_ai_key
+# load dotenv 
+load_dotenv()
+# fetching open ai key
+OPENAI_API_KEY=os.getenv("OPENAI_API_KEY")
+
+# fetching model name 
+model_name = os.getenv("COMPLETIONS_MODEL")
 def pdf_upload(file) -> str:
     pdf_file = file.name
 
@@ -31,7 +34,7 @@ def pdf_and_question(pdf_read,question) -> str:
      
      qna_dict = dict()
      for i in range(0,len(ques)):
-        response = client.chat.completions.create(model="gpt-3.5-turbo-0125",
+        response = client.chat.completions.create(model=model_name,
      messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": f'The following is the context followed by a question.\n{pdf_read}\n\nQuestion: {ques} \nPlease answer the question based on the context.'},

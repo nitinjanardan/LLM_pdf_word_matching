@@ -8,7 +8,7 @@ import os
 import json 
 from dotenv import load_dotenv, dotenv_values, find_dotenv
 
-# load dotenv 
+# load dotenv file
 load_dotenv()
 # fetching open ai key
 OPENAI_API_KEY=os.getenv("OPENAI_API_KEY")

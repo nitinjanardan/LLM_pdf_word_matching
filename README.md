@@ -13,5 +13,7 @@ Fallback Mechanism: Returns "Data Not Available" if the confidence level is low.
 
 
 Python 3.7+
+
 streamlit library
+
 openai library

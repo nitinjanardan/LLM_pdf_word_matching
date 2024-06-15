@@ -7,7 +7,6 @@ from openai import OpenAI
 import os 
 import json 
 from dotenv import load_dotenv, dotenv_values, find_dotenv
-from fuzzywuzzy import fuzz, process
 # load dotenv file
 load_dotenv()
 # fetching open ai key
@@ -15,6 +14,9 @@ OPENAI_API_KEY=os.getenv("OPENAI_API_KEY")
 
 # fetching model name 
 model_name = os.getenv("COMPLETIONS_MODEL")
+
+qna_dict = dict()
+# function to read pdf file 
 def pdf_upload(file) -> str:
     pdf_file = file.name
 
@@ -44,7 +46,6 @@ def pdf_and_question(pdf_read,question) -> str:
         res_message =response.choices[0].message.content
        
         qna_dict.update({ques_l:res_message})
-    #  st.write(qna_dict)
      json_qna = json.dumps(qna_dict)
      st.write(json_qna)
 

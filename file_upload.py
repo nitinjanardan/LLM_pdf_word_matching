@@ -7,7 +7,7 @@ from openai import OpenAI
 import os 
 import json 
 from dotenv import load_dotenv, dotenv_values, find_dotenv
-
+from fuzzywuzzy import fuzz, process
 # load dotenv file
 load_dotenv()
 # fetching open ai key
@@ -33,17 +33,19 @@ def pdf_and_question(pdf_read,question) -> str:
      ques = question.split("\n")
      
      qna_dict = dict()
-     for i in range(0,len(ques)):
+     for ques_l in ques:
         response = client.chat.completions.create(model=model_name,
      messages=[
         {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": f'The following is the context followed by a question.\n{pdf_read}\n\nQuestion: {ques} \nPlease answer the question based on the context.'},
-        {"role": "user", "content": f'Output should be word to word match if the {ques} is a word to word match. If the answer is of low confidence then give the output as "Data Not Available"'}
+        {"role": "user", "content": f'The following is the context followed by a question.\n{pdf_read}\n\nQuestion: {ques_l}\nPlease answer the question based on the context.'},
+        {"role": "user", "content": f'If the answer is of low confidence then give the output as "Data Not Available"'}
+      
     ])
         res_message =response.choices[0].message.content
-        qna_dict.update({ques[i]:res_message})
+       
+        qna_dict.update({ques_l:res_message})
+    #  st.write(qna_dict)
      json_qna = json.dumps(qna_dict)
      st.write(json_qna)
-
 
 

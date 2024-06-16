@@ -12,7 +12,7 @@ OpenAI GPT-3.5 Integration: Uses OpenAI's gpt-3.5-turbo-0125 API to generate res
 Exact Match Handling: Prioritizes exact word-to-word matches to ensure accurate responses.
 Fallback Mechanism: Returns "Data Not Available" if the confidence level is low.
 
-**Requirements**
+* Tools and Library **
 
 
 Python 3.7+
@@ -20,6 +20,5 @@ Python 3.7+
 streamlit library
 
 openai library
-
 
 Slack Sdk

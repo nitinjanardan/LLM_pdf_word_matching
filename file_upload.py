@@ -24,7 +24,7 @@ channel = os.getenv("channel")
 
 qna_dict = dict()
 
-# function to read pdf file 
+# function to read pdf file
 def pdf_upload(file) -> str:
     pdf_file = file.name
 

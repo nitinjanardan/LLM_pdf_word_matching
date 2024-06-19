@@ -27,6 +27,7 @@ qna_dict = dict()
 # function to read pdf file
 def pdf_upload(file) -> str:
     pdf_file = file.name
+    #reading file name
 
     pdf_reader = PyPDF2.PdfReader(file)
     # Extract the content 
